@@ -5,17 +5,25 @@
 import numpy as np
 import math
 
-# configuration using global variables
-nsources = 1000
-# from wikipedia
-ref_ra = '00:42:44.3'
-ref_dec = '41:16:09'
-radius = 1
 
-
-def generate_positions():
+def generate_positions(ref_ra='00:42:44.3',
+                       ref_dec='41:16:09',
+                       radius=1.,
+                       nsources=1000):
     """
-    Create `nsources` random locations within `radius` degrees of the reference `ref_ra`/`ref_dec`.
+    Create nsources random locations within radius of the reference position.
+
+    Parameters
+    ----------
+    ref_ra, ref_dec : str
+        Reference position in "HH:MM:SS.S"/"DD:MM:SS.S" format.
+        Default position is Andromeda galaxy.
+
+    radius : float
+        The radius within which to generate positions. Default = 1.
+
+    nsources : int
+        The number of positions to generate
 
     Returns
     -------
@@ -40,14 +48,23 @@ def generate_positions():
     return ras, decs
 
 
-def write_file(ras, decs):
+def write_file(ras, decs,
+               outfile='catalog.csv'):
     """
     Write the ra/dec catalog to a file, and include a header and IDs.
+
+    Parameters
+    ----------
+    ras, decs : list, numpy.array, or any iterable
+        Iterable of ra and dec coordinates. The length of these need to match.
+
+    outfile : str
+        Path/filename for the output file. (Overwite=True)
     """
-    with open('catalog.csv', 'w') as f:
+    with open(outfile, 'w') as f:
         # creat a header row
         print("id,ra,dec", file=f)
-        for i in range(1000):
+        for i in range(len(ras)):
             # use a csv format
             print("{0}, {1:7.4f}, {2:7.4f}".format(i, ras[i], decs[i]), file=f)
     return
