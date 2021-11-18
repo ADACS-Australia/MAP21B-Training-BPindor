@@ -5,40 +5,54 @@
 import numpy as np
 import math
 
+# configuration using global variables
+nsources = 1000
+# from wikipedia
+ref_ra = '00:42:44.3'
+ref_dec = '41:16:09'
+radius = 1
+
 
 def generate_positions():
     """
-    Create 1,000 random locations within 1 degree of the Andromeda galaxy.
+    Create `nsources` random locations within `radius` degrees of the reference `ref_ra`/`ref_dec`.
 
     Returns
     -------
     ra, dec : numpy.array
         Arrays of ra and dec coordinates in degrees.
     """
-    # from wikipedia
-    ra = '00:42:44.3'
-    dec = '41:16:09'
 
-    d, m, s = dec.split(':')
+    # convert DMS -> degrees
+    d, m, s = ref_dec.split(':')
     dec = int(d)+int(m)/60+float(s)/3600
 
-    h, m, s = ra.split(':')
+    # convert HMS -> degrees
+    h, m, s = ref_ra.split(':')
     ra = 15*(int(h)+int(m)/60+float(s)/3600)
-    ra = ra/math.cos(dec*math.pi/180)
+    ra = ra/math.cos(dec*math.pi/180)  # don't forget projection effects
 
-    # make 1000 stars within 1 degree of Andromeda
-    ra_offsets = np.random.uniform(-1, 1, size=1000)
-    dec_offsets = np.random.uniform(-1, 1, size=1000)
+    ra_offsets = np.random.uniform(-1*radius, radius, size=nsources)
+    dec_offsets = np.random.uniform(-1*radius, radius, size=nsources)
 
     ras = ra + ra_offsets
     decs = dec + dec_offsets
     return ras, decs
 
 
-ras, decs = generate_positions()
+def write_file(ras, decs):
+    """
+    Write the ra/dec catalog to a file, and include a header and IDs.
+    """
+    with open('catalog.csv', 'w') as f:
+        # creat a header row
+        print("id,ra,dec", file=f)
+        for i in range(1000):
+            # use a csv format
+            print("{0}, {1:7.4f}, {2:7.4f}".format(i, ras[i], decs[i]), file=f)
+    return
 
-# now write these to a csv file for use by my other program
-with open('catalog.csv', 'w') as f:
-    print("id,ra,dec", file=f)
-    for i in range(1000):
-        print("{0}, {1:7.4f}, {2:7.4f}".format(i, ras[i], decs[i]), file=f)
+
+# Do the work
+ras, decs = generate_positions()
+write_file(ras, decs)
