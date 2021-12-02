@@ -4,7 +4,8 @@ import skysim
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-reqs = ['numpy>=1.19', ]
+with open('requirements.txt', 'r') as fh:
+    reqs = [line for line in fh.readlines() if not line.startswith('#')]
 
 setuptools.setup(
     name="SkySim",
