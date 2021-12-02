@@ -15,6 +15,6 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/DevOne/sky_sim",
-    scripts=['sim_catalog'],
+    scripts=['scripts/sim_catalog'],
     python_requires=">=3.6",
 )
