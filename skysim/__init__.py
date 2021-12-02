@@ -20,5 +20,5 @@ __citation__ = """
 }
 
 % It is also appropriate to link to the following repository:
-\footnote{Available at \url{https://github.com/devone/AwesomeSauce}{github.com/devone/AwesomeSauce}}
+https://github.com/devone/AwesomeSauce
 """
