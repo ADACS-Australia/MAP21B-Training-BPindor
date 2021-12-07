@@ -32,7 +32,10 @@ def generate_positions(ref_ra='00:42:44.3',
 
     # convert DMS -> degrees
     d, m, s = ref_dec.split(':')
-    dec = int(d)+int(m)/60+float(s)/3600
+    sign = 1
+    if d[0] == '-':
+        sign = -1
+    dec = sign*(abs(int(d))+int(m)/60+float(s)/3600)
 
     # convert HMS -> degrees
     h, m, s = ref_ra.split(':')
