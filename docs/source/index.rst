@@ -11,6 +11,12 @@ Welcome to SkySim's documentation!
    :caption: Contents:
 
 
+Modules
+=======
+
+.. automodule:: skysim.sim
+   :members:
+
 
 Indices and tables
 ==================
