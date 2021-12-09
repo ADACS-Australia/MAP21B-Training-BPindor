@@ -4,3 +4,4 @@ settings.json
 plot.png
 *.pyc
 *.egg-info
+docs/build
