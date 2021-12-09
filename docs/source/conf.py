@@ -35,7 +35,12 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.viewcode',
               'sphinx.ext.napoleon',
               'sphinx.ext.intersphinx',
+              'myst_parser',
               ]
+
+# mappings for parsing files
+source_suffix = {'.rst': 'restructuredtext',
+                 '.md': 'markdown'}
 
 # Add mappings
 intersphinx_mapping = {
