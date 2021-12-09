@@ -26,7 +26,7 @@ def generate_positions(ref_ra='00:42:44.3',
 
     Returns
     -------
-    ra, dec : numpy.array
+    ra, dec : :obj:`numpy.array`
         Arrays of ra and dec coordinates in degrees.
     """
 
