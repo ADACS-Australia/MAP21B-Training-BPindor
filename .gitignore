@@ -5,3 +5,4 @@ plot.png
 *.pyc
 *.egg-info
 docs/build
+.coverage
