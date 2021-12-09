@@ -6,3 +6,4 @@ plot.png
 *.egg-info
 docs/build
 .coverage
+htmlcov
