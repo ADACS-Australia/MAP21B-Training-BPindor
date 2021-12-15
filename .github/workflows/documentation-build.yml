@@ -35,3 +35,8 @@ jobs:
           build-command: make html
           # Run before the build command, you can use this to install system level dependencies, for example with "apt-get update -y && apt-get install -y perl"
           # pre-build-command: # optional
+      - name: Archive documentation
+        uses: actions/upload-artifact@v2
+        with:
+          name: documentation-html
+          path: docs/build/
