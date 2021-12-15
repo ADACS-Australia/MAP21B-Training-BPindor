@@ -3,3 +3,4 @@ pdoc
 sphinx
 numpydoc
 sphinx-rtd-theme
+myst-parser
